@@ -10,6 +10,9 @@ const navigation = [
   { name: 'Kontakt', href: '/contact' },
 ];
 
+const DOCTOLIB_URL =
+  'https://www.doctolib.de/zahnarztpraxis/castrop-rauxel/mvz-zahnarztcentrum-castrop/booking/new-patient?specialityId=1285&bookingFunnelSource=profile';
+
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -36,9 +39,14 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
-              <Link to='/contact' className='btn-primary'>
+              <a
+                href={DOCTOLIB_URL}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='btn-primary'
+              >
                 Termin Vereinbaren
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -73,13 +81,15 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <Link
-              to='/contact'
+            <a
+              href={DOCTOLIB_URL}
+              target='_blank'
+              rel='noopener noreferrer'
               className='btn-primary block text-center mt-4'
               onClick={() => setMobileMenuOpen(false)}
             >
               Termin Vereinbaren
-            </Link>
+            </a>
           </div>
         </div>
       )}

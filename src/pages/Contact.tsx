@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
+const DOCTOLIB_URL =
+  'https://www.doctolib.de/zahnarztpraxis/castrop-rauxel/mvz-zahnarztcentrum-castrop/booking/new-patient?specialityId=1285&bookingFunnelSource=profile';
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -167,6 +170,16 @@ const Contact = () => {
                       <br />
                       Sonntag: Geschlossen
                     </p>
+                  </div>
+                  <div className='pt-4'>
+                    <a
+                      href={DOCTOLIB_URL}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='btn-primary w-full text-center block'
+                    >
+                      Online Termin Vereinbaren
+                    </a>
                   </div>
                 </div>
               </div>

@@ -1,33 +1,83 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {
-  BeakerIcon,
-  SparklesIcon,
-  FaceSmileIcon,
-  TruckIcon,
-} from '@heroicons/react/24/outline';
 
 const services = [
   {
     title: 'Allgemeine Zahnheilkunde',
     description: 'Umfassende zahnärztliche Versorgung für die ganze Familie.',
-    icon: BeakerIcon,
+    icon: (
+      <svg
+        className='w-12 h-12 text-primary'
+        fill='none'
+        stroke='currentColor'
+        viewBox='0 0 24 24'
+      >
+        <path
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth={2}
+          d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'
+        />
+      </svg>
+    ),
   },
   {
     title: 'Ästhetische Zahnheilkunde',
     description:
       'Verwandeln Sie Ihr Lächeln mit unseren kosmetischen Behandlungen.',
-    icon: SparklesIcon,
+    icon: (
+      <svg
+        className='w-12 h-12 text-primary'
+        fill='none'
+        stroke='currentColor'
+        viewBox='0 0 24 24'
+      >
+        <path
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth={2}
+          d='M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+        />
+      </svg>
+    ),
   },
   {
     title: 'Kieferorthopädie',
     description: 'Professionelle Zahnkorrektur und Ausrichtung.',
-    icon: FaceSmileIcon,
+    icon: (
+      <svg
+        className='w-12 h-12 text-primary'
+        fill='none'
+        stroke='currentColor'
+        viewBox='0 0 24 24'
+      >
+        <path
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth={2}
+          d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+        />
+      </svg>
+    ),
   },
   {
     title: 'Notfallversorgung',
     description: '24/7 Notfall-Zahnbehandlung verfügbar.',
-    icon: TruckIcon,
+    icon: (
+      <svg
+        className='w-12 h-12 text-primary'
+        fill='none'
+        stroke='currentColor'
+        viewBox='0 0 24 24'
+      >
+        <path
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth={2}
+          d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+        />
+      </svg>
+    ),
   },
 ];
 
@@ -62,10 +112,10 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className='relative bg-primary text-white'>
+      <section className='bg-primary text-white'>
         <div className='container-custom py-24 md:py-32'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-12 items-center'>
-            <div className='max-w-3xl'>
+            <div>
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -97,13 +147,33 @@ const Home = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className='hidden md:block'
+              className='relative'
             >
               <img
                 src='https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
                 alt='Zahnarztpraxis'
-                className='rounded-lg shadow-xl w-full h-[400px] object-cover'
+                className='rounded-lg shadow-2xl'
               />
+              <div className='absolute -bottom-6 -left-6 bg-white p-4 rounded-lg shadow-lg'>
+                <div className='flex items-center space-x-2'>
+                  <svg
+                    className='w-8 h-8 text-primary'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                  >
+                    <path
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
+                      strokeWidth={2}
+                      d='M5 13l4 4L19 7'
+                    />
+                  </svg>
+                  <span className='text-gray-800 font-semibold'>
+                    Professionelle Behandlung
+                  </span>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
@@ -130,9 +200,7 @@ const Home = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className='bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow'
               >
-                <div className='text-primary mb-4'>
-                  <service.icon className='w-12 h-12' />
-                </div>
+                <div className='mb-4'>{service.icon}</div>
                 <h3 className='text-xl font-bold mb-2'>{service.title}</h3>
                 <p className='text-gray-600'>{service.description}</p>
               </motion.div>

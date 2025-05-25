@@ -1,76 +1,58 @@
 import { motion } from 'framer-motion';
 
-const blogPosts = [
+const caseStudies = [
   {
-    title: 'Die Bedeutung regelmäßiger Zahnarztbesuche',
-    excerpt:
-      'Regelmäßige Zahnarztbesuche sind wichtig für die Erhaltung der Mundgesundheit und zur Vorbeugung von Zahnproblemen.',
-    image:
+    title: 'Komplettes Lächeln-Design',
+    description: 'Umfassende Transformation mit Veneers und Zahnaufhellung',
+    beforeImage:
+      'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    afterImage:
       'https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    date: '15. März 2024',
-    category: 'Zahngesundheit',
-    author: 'Dr. Sarah Schmidt',
+    treatment: ['Keramik-Veneers', 'Zahnaufhellung', 'Zahnfleischkorrektur'],
+    duration: '3 Monate',
+    patientFeedback:
+      'Ich bin überglücklich mit meinem neuen Lächeln. Die Ergebnisse haben meine Erwartungen übertroffen!',
   },
   {
-    title: 'Zahnaufhellung: Die verschiedenen Möglichkeiten',
-    excerpt:
-      'Entdecken Sie die verschiedenen Möglichkeiten der Zahnaufhellung und finden Sie die beste Lösung für Ihr Lächeln.',
-    image:
+    title: 'Invisalign Behandlung',
+    description: 'Professionelle Zahnkorrektur ohne sichtbare Zahnspange',
+    beforeImage:
       'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    date: '10. März 2024',
-    category: 'Ästhetische Zahnheilkunde',
-    author: 'Dr. Michael Weber',
+    afterImage:
+      'https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    treatment: [
+      'Invisalign Zahnschienen',
+      'Digitale Planung',
+      'Regelmäßige Kontrollen',
+    ],
+    duration: '12 Monate',
+    patientFeedback:
+      'Die unsichtbaren Zahnschienen waren eine perfekte Lösung für mich. Sehr diskret und effektiv!',
   },
   {
-    title: 'Tipps für gesundes Zahnfleisch',
-    excerpt:
-      'Erfahren Sie mehr über die besten Praktiken zur Erhaltung gesunden Zahnfleisches und zur Vorbeugung von Zahnfleischerkrankungen.',
-    image:
+    title: 'Zahnimplantate',
+    description: 'Natürlich aussehender Zahnersatz mit Implantaten',
+    beforeImage:
       'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    date: '5. März 2024',
-    category: 'Mundgesundheit',
-    author: 'Dr. Emily Müller',
+    afterImage:
+      'https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    treatment: ['Zahnimplantate', 'Knochenaufbau', 'Kronen'],
+    duration: '6 Monate',
+    patientFeedback:
+      'Die Implantate fühlen sich an wie meine eigenen Zähne. Ich kann wieder alles essen und lächeln!',
   },
   {
-    title: 'Die Vorteile der Invisalign-Behandlung',
-    excerpt:
-      'Entdecken Sie, wie Invisalign Ihnen helfen kann, ein geraderes Lächeln ohne traditionelle Zahnspangen zu erreichen.',
-    image:
+    title: 'Ästhetische Zahnkorrektur',
+    description: 'Minimalinvasive Behandlung für ein perfektes Lächeln',
+    beforeImage:
       'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    date: '28. Februar 2024',
-    category: 'Kieferorthopädie',
-    author: 'Dr. Michael Weber',
+    afterImage:
+      'https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    treatment: ['Komposite', 'Zahnaufhellung', 'Zahnformkorrektur'],
+    duration: '2 Monate',
+    patientFeedback:
+      'Schnelle und schmerzfreie Behandlung mit fantastischen Ergebnissen!',
   },
-  {
-    title: 'Zahnpflege bei Kindern: Ein Leitfaden für Eltern',
-    excerpt:
-      'Wichtige Tipps für Eltern, um die Mundgesundheit ihrer Kinder von klein auf zu fördern.',
-    image:
-      'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    date: '20. Februar 2024',
-    category: 'Kinderzahnheilkunde',
-    author: 'Dr. Emily Müller',
-  },
-  {
-    title: 'Notfall-Zahnbehandlung: Was Sie wissen müssen',
-    excerpt:
-      'Erfahren Sie mehr über häufige Zahnnotfälle und wie Sie damit umgehen können, bevor Sie den Zahnarzt erreichen.',
-    image:
-      'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-    date: '15. Februar 2024',
-    category: 'Notfallversorgung',
-    author: 'Dr. Sarah Schmidt',
-  },
-];
-
-const categories = [
-  'Alle Beiträge',
-  'Zahngesundheit',
-  'Ästhetische Zahnheilkunde',
-  'Mundgesundheit',
-  'Kieferorthopädie',
-  'Kinderzahnheilkunde',
-  'Notfallversorgung',
 ];
 
 const Blog = () => {
@@ -86,73 +68,125 @@ const Blog = () => {
             className='max-w-3xl mx-auto text-center'
           >
             <h1 className='text-4xl md:text-5xl font-bold mb-6'>
-              Zahnarzt Blog
+              Unsere Erfolge
             </h1>
             <p className='text-xl'>
-              Informieren Sie sich über Zahngesundheit und Pflege
+              Entdecken Sie die Transformationen unserer Patienten
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Blog Content */}
+      {/* Case Studies Section */}
       <section className='py-20'>
         <div className='container-custom'>
-          <div className='grid grid-cols-1 lg:grid-cols-4 gap-12'>
-            {/* Sidebar */}
-            <div className='lg:col-span-1'>
-              <div className='bg-white p-6 rounded-lg shadow-lg'>
-                <h2 className='text-xl font-bold mb-6'>Kategorien</h2>
-                <ul className='space-y-2'>
-                  {categories.map((category) => (
-                    <li key={category}>
-                      <button className='text-gray-600 hover:text-primary transition-colors'>
-                        {category}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          <div className='grid grid-cols-1 gap-16'>
+            {caseStudies.map((caseStudy, index) => (
+              <motion.div
+                key={caseStudy.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className='bg-white rounded-lg shadow-lg overflow-hidden'
+              >
+                <div className='p-8'>
+                  <h2 className='text-3xl font-bold mb-4'>{caseStudy.title}</h2>
+                  <p className='text-gray-600 mb-6'>{caseStudy.description}</p>
 
-            {/* Blog Posts */}
-            <div className='lg:col-span-3'>
-              <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-                {blogPosts.map((post, index) => (
-                  <motion.article
-                    key={post.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className='bg-white rounded-lg shadow-lg overflow-hidden'
-                  >
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className='w-full h-48 object-cover'
-                    />
-                    <div className='p-6'>
-                      <div className='flex items-center text-sm text-gray-500 mb-2'>
-                        <span>{post.date}</span>
-                        <span className='mx-2'>•</span>
-                        <span>{post.category}</span>
-                      </div>
-                      <h2 className='text-xl font-bold mb-2'>{post.title}</h2>
-                      <p className='text-gray-600 mb-4'>{post.excerpt}</p>
-                      <div className='flex items-center justify-between'>
-                        <span className='text-sm text-gray-500'>
-                          Von {post.author}
-                        </span>
-                        <button className='text-primary hover:text-primary/80 transition-colors'>
-                          Weiterlesen →
-                        </button>
-                      </div>
+                  {/* Before/After Images */}
+                  <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-8'>
+                    <div>
+                      <h3 className='text-lg font-semibold mb-2 text-gray-700'>
+                        Vorher
+                      </h3>
+                      <img
+                        src={caseStudy.beforeImage}
+                        alt={`Vorher - ${caseStudy.title}`}
+                        className='rounded-lg shadow-md w-full h-64 object-cover'
+                      />
                     </div>
-                  </motion.article>
-                ))}
-              </div>
-            </div>
+                    <div>
+                      <h3 className='text-lg font-semibold mb-2 text-gray-700'>
+                        Nachher
+                      </h3>
+                      <img
+                        src={caseStudy.afterImage}
+                        alt={`Nachher - ${caseStudy.title}`}
+                        className='rounded-lg shadow-md w-full h-64 object-cover'
+                      />
+                    </div>
+                  </div>
+
+                  {/* Treatment Details */}
+                  <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+                    <div>
+                      <h3 className='text-lg font-semibold mb-4 text-gray-700'>
+                        Behandlung
+                      </h3>
+                      <ul className='space-y-2'>
+                        {caseStudy.treatment.map((item) => (
+                          <li
+                            key={item}
+                            className='flex items-center text-gray-600'
+                          >
+                            <svg
+                              className='w-5 h-5 text-primary mr-2'
+                              fill='none'
+                              stroke='currentColor'
+                              viewBox='0 0 24 24'
+                            >
+                              <path
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                                strokeWidth={2}
+                                d='M5 13l4 4L19 7'
+                              />
+                            </svg>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h3 className='text-lg font-semibold mb-4 text-gray-700'>
+                        Behandlungsdauer
+                      </h3>
+                      <p className='text-gray-600'>{caseStudy.duration}</p>
+                    </div>
+                    <div>
+                      <h3 className='text-lg font-semibold mb-4 text-gray-700'>
+                        Patientenfeedback
+                      </h3>
+                      <p className='text-gray-600 italic'>
+                        "{caseStudy.patientFeedback}"
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className='bg-primary text-white py-16'>
+        <div className='container-custom text-center'>
+          <h2 className='text-3xl md:text-4xl font-bold mb-4'>
+            Bereit für Ihre Transformation?
+          </h2>
+          <p className='text-xl mb-8 max-w-2xl mx-auto'>
+            Vereinbaren Sie noch heute einen Beratungstermin und lassen Sie uns
+            Ihr Lächeln verändern.
+          </p>
+          <a
+            href='https://www.doctolib.de/zahnarztpraxis/castrop-rauxel/mvz-zahnarztcentrum-castrop/booking/new-patient?specialityId=1285&bookingFunnelSource=profile'
+            target='_blank'
+            rel='noopener noreferrer'
+            className='btn-secondary'
+          >
+            Termin Vereinbaren
+          </a>
         </div>
       </section>
     </div>

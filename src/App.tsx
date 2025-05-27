@@ -5,12 +5,15 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Blog from './pages/Blog';
+import Results from './pages/Results';
+import ScrollToTop from './components/ScrollToTop';
+import ScrollToTopOnMount from './components/ScrollToTopOnMount';
 
 function App() {
   return (
     <Router>
-      <div className='min-h-screen flex flex-col'>
+      <ScrollToTopOnMount />
+      <div className='flex flex-col min-h-screen'>
         <Navbar />
         <main className='flex-grow'>
           <Routes>
@@ -18,10 +21,11 @@ function App() {
             <Route path='/services' element={<Services />} />
             <Route path='/about' element={<About />} />
             <Route path='/contact' element={<Contact />} />
-            <Route path='/blog' element={<Blog />} />
+            <Route path='/results' element={<Results />} />
           </Routes>
         </main>
         <Footer />
+        <ScrollToTop />
       </div>
     </Router>
   );

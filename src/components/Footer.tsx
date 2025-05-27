@@ -1,13 +1,18 @@
 import { Link } from 'react-router-dom';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <footer className='bg-secondary text-white'>
+    <footer className='bg-primary text-white'>
       <div className='container-custom py-12'>
-        <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           {/* About Section */}
           <div className='space-y-4'>
+            <img
+              src='/assets/logo.png'
+              alt='MVZ Zahnarzt Centrum Castrop Logo'
+              className='h-20 w-auto mb-4'
+            />
             <h3 className='text-xl font-bold'>MVZ Zahnarzt Centrum Castrop</h3>
             <p className='text-gray-300'>
               Außergewöhnliche Zahnpflege mit Fokus auf Patientenkomfort und
@@ -15,28 +20,12 @@ const Footer = () => {
             </p>
             <div className='flex space-x-4'>
               <a
-                href='#'
-                className='text-gray-300 hover:text-white transition-colors'
-              >
-                <FaFacebook className='w-6 h-6' />
-              </a>
-              <a
-                href='#'
-                className='text-gray-300 hover:text-white transition-colors'
-              >
-                <FaTwitter className='w-6 h-6' />
-              </a>
-              <a
-                href='#'
-                className='text-gray-300 hover:text-white transition-colors'
+                href='https://www.instagram.com/mvzzahnarztcentrum/?hl=de'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-gray-300 hover:text-secondary transition-all duration-300 hover:scale-110'
               >
                 <FaInstagram className='w-6 h-6' />
-              </a>
-              <a
-                href='#'
-                className='text-gray-300 hover:text-white transition-colors'
-              >
-                <FaLinkedin className='w-6 h-6' />
               </a>
             </div>
           </div>
@@ -48,7 +37,7 @@ const Footer = () => {
               <li>
                 <Link
                   to='/'
-                  className='text-gray-300 hover:text-white transition-colors'
+                  className='text-gray-300 hover:text-secondary transition-all duration-300 hover:scale-110 hover:tracking-wider inline-block'
                 >
                   Startseite
                 </Link>
@@ -56,7 +45,7 @@ const Footer = () => {
               <li>
                 <Link
                   to='/services'
-                  className='text-gray-300 hover:text-white transition-colors'
+                  className='text-gray-300 hover:text-secondary transition-all duration-300 hover:scale-110 hover:tracking-wider inline-block'
                 >
                   Leistungen
                 </Link>
@@ -64,56 +53,17 @@ const Footer = () => {
               <li>
                 <Link
                   to='/about'
-                  className='text-gray-300 hover:text-white transition-colors'
+                  className='text-gray-300 hover:text-secondary transition-all duration-300 hover:scale-110 hover:tracking-wider inline-block'
                 >
                   Über Uns
                 </Link>
               </li>
               <li>
                 <Link
-                  to='/blog'
-                  className='text-gray-300 hover:text-white transition-colors'
+                  to='/results'
+                  className='text-gray-300 hover:text-secondary transition-all duration-300 hover:scale-110 hover:tracking-wider inline-block'
                 >
-                  Blog
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className='text-xl font-bold mb-4'>Unsere Leistungen</h3>
-            <ul className='space-y-2'>
-              <li>
-                <Link
-                  to='/services'
-                  className='text-gray-300 hover:text-white transition-colors'
-                >
-                  Allgemeine Zahnheilkunde
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/services'
-                  className='text-gray-300 hover:text-white transition-colors'
-                >
-                  Ästhetische Zahnheilkunde
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/services'
-                  className='text-gray-300 hover:text-white transition-colors'
-                >
-                  Kieferorthopädie
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/services'
-                  className='text-gray-300 hover:text-white transition-colors'
-                >
-                  Notfallversorgung
+                  Ergebnisse
                 </Link>
               </li>
             </ul>
@@ -124,11 +74,11 @@ const Footer = () => {
             <h3 className='text-xl font-bold mb-4'>Kontakt</h3>
             <ul className='space-y-2'>
               <li className='text-gray-300'>
-                Zahnarztstraße 123
+                Recklinghauser Str. 132
                 <br />
-                Stadt, PLZ
+                44581 Castrop-Rauxel
               </li>
-              <li className='text-gray-300'>Telefon: (030) 123-4567</li>
+              <li className='text-gray-300'>Telefon: 02305 971232</li>
               <li className='text-gray-300'>E-Mail: info@zahnarztpraxis.de</li>
             </ul>
           </div>

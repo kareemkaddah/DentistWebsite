@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const team = [
   {
@@ -26,29 +27,86 @@ const team = [
 
 const values = [
   {
-    title: 'Patientenorientierte Versorgung',
+    title: 'Menschliche, einfühlsame Betreuung',
     description:
-      'Ihr Komfort und Wohlbefinden stehen während Ihrer gesamten Behandlung an erster Stelle.',
+      'Wir begegnen Ihnen auf Augenhöhe – mit Respekt, Mitgefühl und echter Fürsorge. Besonders für ängstliche Patient:innen nehmen wir uns extra Zeit.',
     icon: '❤️',
   },
   {
-    title: 'Moderne Technologie',
+    title: 'Moderne Technologie, menschlich eingesetzt',
     description:
-      'Hochmoderne Ausrüstung und Techniken für optimale Behandlungsergebnisse.',
+      'Wir nutzen moderne Technik nicht nur für beste Ergebnisse, sondern auch, um Behandlungen so angenehm und schonend wie möglich zu gestalten.',
     icon: '🔬',
   },
   {
-    title: 'Erfahrenes Team',
+    title: 'Kompetenz mit Herz',
     description:
-      'Unsere qualifizierten Fachkräfte bringen jahrelange Expertise in jede Behandlung ein.',
+      'Unser erfahrenes Team vereint fachliche Exzellenz mit persönlichem Engagement für Ihr Wohlbefinden.',
     icon: '👥',
   },
   {
-    title: 'Angenehme Atmosphäre',
-    description: 'Eine einladende Umgebung, in der Sie sich wohlfühlen können.',
+    title: 'Wohlfühlatmosphäre statt Praxisstress',
+    description:
+      'Eine beruhigende, freundliche Umgebung – damit Sie sich vom ersten Moment an sicher und gut aufgehoben fühlen.',
     icon: '🏥',
   },
 ];
+
+const AnimatedEmoji = ({ emoji, index }: { emoji: string; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  // Special animation for heart emoji
+  if (emoji === '❤️') {
+    return (
+      <motion.div
+        ref={ref}
+        className='text-4xl mb-4'
+        initial={{ scale: 0, opacity: 0 }}
+        animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+        transition={{
+          type: 'spring',
+          stiffness: 260,
+          damping: 20,
+          delay: index * 0.2,
+        }}
+        whileHover={{
+          scale: [1, 1.2, 1],
+          transition: {
+            duration: 0.5,
+            repeat: Infinity,
+            repeatType: 'reverse',
+          },
+        }}
+      >
+        {emoji}
+      </motion.div>
+    );
+  }
+
+  // Regular animation for other emojis
+  return (
+    <motion.div
+      ref={ref}
+      className='text-4xl mb-4'
+      initial={{ scale: 0, opacity: 0, rotate: -180 }}
+      animate={
+        isInView
+          ? { scale: 1, opacity: 1, rotate: 0 }
+          : { scale: 0, opacity: 0, rotate: -180 }
+      }
+      transition={{
+        type: 'spring',
+        stiffness: 260,
+        damping: 20,
+        delay: index * 0.2,
+      }}
+      whileHover={{ scale: 1.2, rotate: 10 }}
+    >
+      {emoji}
+    </motion.div>
+  );
+};
 
 const About = () => {
   return (
@@ -107,7 +165,7 @@ const About = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className='bg-gray-50 p-6 rounded-lg text-center'
               >
-                <div className='text-4xl mb-4'>{value.icon}</div>
+                <AnimatedEmoji emoji={value.icon} index={index} />
                 <h3 className='text-xl font-bold mb-2'>{value.title}</h3>
                 <p className='text-gray-600'>{value.description}</p>
               </motion.div>
@@ -133,15 +191,25 @@ const About = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className='bg-white rounded-lg shadow-lg overflow-hidden'
+                className='bg-white rounded-lg shadow-lg overflow-hidden group cursor-pointer'
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow:
+                    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                  transition: { duration: 0.3 },
+                }}
               >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className='w-full h-64 object-cover'
-                />
+                <div className='overflow-hidden'>
+                  <motion.img
+                    src={member.image}
+                    alt={member.name}
+                    className='w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110'
+                  />
+                </div>
                 <div className='p-6'>
-                  <h3 className='text-xl font-bold mb-2'>{member.name}</h3>
+                  <h3 className='text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300'>
+                    {member.name}
+                  </h3>
                   <p className='text-primary font-medium mb-4'>{member.role}</p>
                   <p className='text-gray-600'>{member.bio}</p>
                 </div>
@@ -163,16 +231,36 @@ const About = () => {
               Sterilisation ein, um Ihre Sicherheit zu gewährleisten.
             </p>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-              <img
-                src='https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-                alt='Zahnarztpraxis'
-                className='rounded-lg shadow-lg'
-              />
-              <img
-                src='https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-                alt='Behandlungsraum'
-                className='rounded-lg shadow-lg'
-              />
+              <motion.div
+                className='overflow-hidden rounded-lg shadow-lg group cursor-pointer'
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow:
+                    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                  transition: { duration: 0.3 },
+                }}
+              >
+                <motion.img
+                  src='https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+                  alt='Zahnarztpraxis'
+                  className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+                />
+              </motion.div>
+              <motion.div
+                className='overflow-hidden rounded-lg shadow-lg group cursor-pointer'
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow:
+                    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                  transition: { duration: 0.3 },
+                }}
+              >
+                <motion.img
+                  src='https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+                  alt='Behandlungsraum'
+                  className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+                />
+              </motion.div>
             </div>
           </div>
         </div>

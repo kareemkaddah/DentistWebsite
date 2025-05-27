@@ -6,7 +6,7 @@ const navigation = [
   { name: 'Startseite', href: '/' },
   { name: 'Leistungen', href: '/services' },
   { name: 'Über Uns', href: '/about' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Ergebnisse', href: '/results' },
   { name: 'Kontakt', href: '/contact' },
 ];
 
@@ -17,13 +17,16 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className='bg-white shadow-sm'>
+    <nav className='bg-primary shadow-sm'>
       <div className='container-custom'>
         <div className='flex items-center justify-between h-20'>
           <div className='flex-shrink-0'>
-            <Link to='/' className='flex flex-col items-start'>
-              <span className='text-3xl font-bold text-primary'>MVZ</span>
-              <span className='text-lg text-primary'>Zahnarzt Centrum</span>
+            <Link to='/' className='flex items-center'>
+              <img
+                src='/assets/logo.png'
+                alt='MVZ Zahnarzt Centrum Castrop Logo'
+                className='h-20 w-auto'
+              />
             </Link>
           </div>
 
@@ -34,7 +37,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className='text-gray-600 hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-300'
+                  className='text-gray-300 hover:text-secondary px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-110 hover:tracking-wider'
                 >
                   {item.name}
                 </Link>
@@ -43,7 +46,7 @@ const Navbar = () => {
                 href={DOCTOLIB_URL}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='btn-primary'
+                className='btn-secondary'
               >
                 Termin Vereinbaren
               </a>
@@ -54,7 +57,7 @@ const Navbar = () => {
           <div className='md:hidden'>
             <button
               type='button'
-              className='text-gray-600 hover:text-primary'
+              className='text-gray-300 hover:text-white'
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (
@@ -69,13 +72,13 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className='md:hidden'>
+        <div className='md:hidden bg-primary'>
           <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className='text-gray-600 hover:text-primary block px-3 py-2 text-base font-medium'
+                className='text-gray-300 hover:text-secondary block px-3 py-2 text-base font-medium transition-all duration-300 hover:scale-110 hover:tracking-wider'
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}
@@ -85,7 +88,7 @@ const Navbar = () => {
               href={DOCTOLIB_URL}
               target='_blank'
               rel='noopener noreferrer'
-              className='btn-primary block text-center mt-4'
+              className='btn-secondary block text-center mt-4'
               onClick={() => setMobileMenuOpen(false)}
             >
               Termin Vereinbaren

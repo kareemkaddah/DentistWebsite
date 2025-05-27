@@ -1,37 +1,13 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const DOCTOLIB_URL =
   'https://www.doctolib.de/zahnarztpraxis/castrop-rauxel/mvz-zahnarztcentrum-castrop/booking/new-patient?specialityId=1285&bookingFunnelSource=profile';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-  };
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   return (
     <div className='bg-gray-50'>
       {/* Hero Section */}
-      <section className='bg-primary text-white py-20'>
+      <section className='bg-primary text-white relative'>
         <div className='container-custom'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -45,21 +21,21 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Information */}
+      {/* Contact Section */}
       <section className='py-20'>
         <div className='container-custom'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-12'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-12'>
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className='bg-white p-8 rounded-lg shadow-lg'
+              className='bg-white p-8 rounded-lg shadow-lg h-full flex flex-col'
             >
               <h2 className='text-2xl font-bold mb-6'>
                 Senden Sie uns eine Nachricht
               </h2>
-              <form onSubmit={handleSubmit} className='space-y-6'>
+              <form className='space-y-6 flex-grow'>
                 <div>
                   <label
                     htmlFor='name'
@@ -70,9 +46,6 @@ const Contact = () => {
                   <input
                     type='text'
                     id='name'
-                    name='name'
-                    value={formData.name}
-                    onChange={handleChange}
                     className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary'
                     required
                   />
@@ -87,27 +60,8 @@ const Contact = () => {
                   <input
                     type='email'
                     id='email'
-                    name='email'
-                    value={formData.email}
-                    onChange={handleChange}
                     className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary'
                     required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor='phone'
-                    className='block text-sm font-medium text-gray-700 mb-1'
-                  >
-                    Telefon
-                  </label>
-                  <input
-                    type='tel'
-                    id='phone'
-                    name='phone'
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary'
                   />
                 </div>
                 <div>
@@ -119,18 +73,20 @@ const Contact = () => {
                   </label>
                   <textarea
                     id='message'
-                    name='message'
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={4}
+                    rows={6}
                     className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary'
                     required
-                  />
+                  ></textarea>
                 </div>
-                <button type='submit' className='w-full btn-primary'>
-                  Nachricht Senden
-                </button>
               </form>
+              <div className='mt-8'>
+                <button
+                  type='submit'
+                  className='w-full bg-primary text-white py-3 px-6 rounded-md hover:bg-secondary transition-colors duration-300'
+                >
+                  Nachricht senden
+                </button>
+              </div>
             </motion.div>
 
             {/* Contact Information */}
@@ -138,68 +94,151 @@ const Contact = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className='space-y-8'
+              className='bg-white p-8 rounded-lg shadow-lg h-full'
             >
-              <div className='bg-white p-8 rounded-lg shadow-lg'>
-                <h2 className='text-2xl font-bold mb-6'>
-                  Kontaktinformationen
-                </h2>
-                <div className='space-y-4'>
-                  <div>
-                    <h3 className='font-bold text-gray-900'>Adresse</h3>
-                    <p className='text-gray-600'>
-                      Zahnarztstraße 123
-                      <br />
-                      44575 Castrop-Rauxel
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className='font-bold text-gray-900'>Telefon</h3>
-                    <p className='text-gray-600'>(02305) 123-4567</p>
-                  </div>
-                  <div>
-                    <h3 className='font-bold text-gray-900'>E-Mail</h3>
-                    <p className='text-gray-600'>info@zahnarztpraxis.de</p>
-                  </div>
-                  <div>
-                    <h3 className='font-bold text-gray-900'>Öffnungszeiten</h3>
-                    <p className='text-gray-600'>
-                      Montag - Freitag: 8:00 - 18:00 Uhr
-                      <br />
-                      Samstag: 9:00 - 14:00 Uhr
-                      <br />
-                      Sonntag: Geschlossen
-                    </p>
-                  </div>
-                  <div className='pt-4'>
-                    <a
-                      href={DOCTOLIB_URL}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className='btn-primary w-full text-center block'
+              <h2 className='text-2xl font-bold mb-6'>Kontaktinformationen</h2>
+              <div className='space-y-6'>
+                <div className='flex items-start space-x-4'>
+                  <div className='text-primary'>
+                    <svg
+                      className='w-6 h-6'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
                     >
-                      Online Termin Vereinbaren
-                    </a>
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+                      />
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M15 11a3 3 0 11-6 0 3 3 0 016 0z'
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className='font-semibold mb-1'>Adresse</h3>
+                    <p className='text-gray-600'>
+                      Recklinghauser Str. 132
+                      <br />
+                      44581 Castrop-Rauxel
+                    </p>
                   </div>
                 </div>
-              </div>
-
-              {/* Map */}
-              <div className='bg-white p-8 rounded-lg shadow-lg'>
-                <h2 className='text-2xl font-bold mb-6'>Standort</h2>
-                <div className='aspect-w-16 aspect-h-9'>
-                  <iframe
-                    src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2487.1234567890123!2d7.3116!3d51.5456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e0c0c0c0c0c0%3A0x0!2sCastrop-Rauxel!5e0!3m2!1sde!2sde!4v1645564750981!5m2!1sde!2sde'
-                    width='100%'
-                    height='300'
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading='lazy'
-                    title='Praxisstandort Castrop-Rauxel'
-                  />
+                <div className='flex items-start space-x-4'>
+                  <div className='text-primary'>
+                    <svg
+                      className='w-6 h-6'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z'
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className='font-semibold mb-1'>Telefon</h3>
+                    <p className='text-gray-600'>02305 971232</p>
+                  </div>
+                </div>
+                <div className='flex items-start space-x-4'>
+                  <div className='text-primary'>
+                    <svg
+                      className='w-6 h-6'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className='font-semibold mb-1'>E-Mail</h3>
+                    <p className='text-gray-600'>info@zahnarztpraxis.de</p>
+                  </div>
+                </div>
+                <div className='flex items-start space-x-4'>
+                  <div className='text-primary'>
+                    <svg
+                      className='w-6 h-6'
+                      fill='none'
+                      stroke='currentColor'
+                      viewBox='0 0 24 24'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth={2}
+                        d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className='font-semibold mb-1'>Öffnungszeiten</h3>
+                    <div className='text-gray-600 space-y-2'>
+                      <div>
+                        <p className='font-semibold text-gray-800 text-lg'>
+                          Montag, Dienstag, Donnerstag
+                        </p>
+                        <p className='ml-4 text-gray-600'>08:30 - 12:00 Uhr</p>
+                        <p className='ml-4 text-gray-600'>14:00 - 17:30 Uhr</p>
+                      </div>
+                      <div>
+                        <p className='font-semibold text-gray-800 text-lg'>
+                          Mittwoch, Freitag
+                        </p>
+                        <p className='ml-4 text-gray-600'>08:30 - 12:00 Uhr</p>
+                      </div>
+                      <div>
+                        <p className='font-semibold text-gray-800 text-lg'>
+                          Samstag, Sonntag
+                        </p>
+                        <p className='ml-4 text-gray-600'>Geschlossen</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className='mt-8'>
+                  <a
+                    href={DOCTOLIB_URL}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='w-full bg-primary text-white py-3 px-6 rounded-md hover:bg-secondary transition-colors duration-300 text-center block'
+                  >
+                    Termin Vereinbaren
+                  </a>
                 </div>
               </div>
             </motion.div>
+          </div>
+
+          {/* Map Section */}
+          <div className='max-w-4xl mx-auto'>
+            <iframe
+              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.1234567890123!2d7.311234567890123!3d51.54567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47b8e0c0c0c0c0c0%3A0x0!2sRecklinghauser%20Str.%20132%2C%2044581%20Castrop-Rauxel!5e0!3m2!1sde!2sde!4v1234567890123!5m2!1sde!2sde'
+              width='100%'
+              height='450'
+              style={{ border: 0 }}
+              allowFullScreen
+              loading='lazy'
+              referrerPolicy='no-referrer-when-downgrade'
+              title='MVZ Zahnarzt Centrum Castrop - Recklinghauser Str. 132'
+              className='rounded-lg shadow-lg'
+            ></iframe>
           </div>
         </div>
       </section>

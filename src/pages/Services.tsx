@@ -1,6 +1,89 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+
+const AnimatedCheckmark = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  return (
+    <div ref={ref}>
+      <motion.svg
+        className='w-5 h-5 text-primary mr-2'
+        fill='none'
+        stroke='currentColor'
+        viewBox='0 0 24 24'
+        initial={{ pathLength: 0 }}
+        animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+        transition={{
+          duration: 0.6,
+          ease: 'easeInOut',
+          delay: 0.2,
+        }}
+      >
+        <motion.path
+          strokeLinecap='round'
+          strokeLinejoin='round'
+          strokeWidth={2}
+          d='M5 13l4 4L19 7'
+          initial={{ pathLength: 0 }}
+          animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+          transition={{
+            duration: 0.6,
+            ease: 'easeInOut',
+            delay: 0.2,
+          }}
+        />
+      </motion.svg>
+    </div>
+  );
+};
 
 const services = [
+  {
+    title: 'Feste Zähne an nur einem Tag – mit ICX-Imperial',
+    description:
+      'Dank des modernen ICX-Imperial Konzepts erhalten Sie feste Zähne an nur einem Tag – schnell, präzise und digital geplant. Unsere Praxis bietet Ihnen damit eine komfortable Komplettlösung: alles aus einer Hand.',
+    features: [
+      'Schnelle Behandlung an nur einem Tag',
+      'Digitale Planung und Präzision',
+      'Moderne ICX-Imperial Technologie',
+      'Komfortable Komplettlösung',
+      'Alles aus einer Hand',
+    ],
+    price: 'Auf Anfrage',
+    image:
+      'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Zahnschiene statt Zahnspange – mit modernClear',
+    description:
+      'Gerade Zähne ganz diskret: Mit den nahezu unsichtbaren Zahnschienen von modernClear korrigieren wir Zahnfehlstellungen sanft und effektiv – ganz ohne klassische Zahnspange. Weltweit wurden bereits über 6 Millionen Patient:innen erfolgreich mit dieser innovativen Methode behandelt.',
+    features: [
+      'Nahezu unsichtbare Zahnschienen',
+      'Sanfte und effektive Korrektur',
+      'Keine klassische Zahnspange nötig',
+      'Bewährte Methode weltweit',
+      'Diskrete Behandlung',
+    ],
+    price: 'Auf Anfrage',
+    image:
+      'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    title: 'Strahlend weißes Lächeln mit fläsh',
+    description:
+      'Mit fläsh bieten wir Ihnen eine moderne, sichere und wirksame Methode zur Zahnaufhellung – direkt in unserer Praxis. Echte fläsh-Ergebnisse sprechen für sich: sichtbar hellere Zähne schon nach der ersten Anwendung. Für ein Lächeln, das begeistert – professionell, sanft und schonend.',
+    features: [
+      'Moderne und sichere Methode',
+      'Direkt in der Praxis',
+      'Sichtbare Ergebnisse nach erster Anwendung',
+      'Professionelle Behandlung',
+      'Sanft und schonend',
+    ],
+    price: 'Auf Anfrage',
+    image:
+      'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+  },
   {
     title: 'Allgemeine Zahnheilkunde',
     description:
@@ -114,19 +197,7 @@ const Services = () => {
                             key={feature}
                             className='flex items-center text-gray-600'
                           >
-                            <svg
-                              className='w-5 h-5 text-primary mr-2'
-                              fill='none'
-                              stroke='currentColor'
-                              viewBox='0 0 24 24'
-                            >
-                              <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                strokeWidth={2}
-                                d='M5 13l4 4L19 7'
-                              />
-                            </svg>
+                            <AnimatedCheckmark />
                             {feature}
                           </li>
                         ))}

@@ -84,6 +84,24 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Legal Links */}
+        <div className='mt-12 pt-8 border-t border-gray-700'>
+          <div className='flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8'>
+            <Link
+              to='/impressum'
+              className='text-gray-300 hover:text-secondary transition-all duration-300 hover:scale-110 hover:tracking-wider'
+            >
+              Impressum
+            </Link>
+            <Link
+              to='/datenschutz'
+              className='text-gray-300 hover:text-secondary transition-all duration-300 hover:scale-110 hover:tracking-wider'
+            >
+              Datenschutzerklärung
+            </Link>
+          </div>
+        </div>
+
         <div className='border-t border-gray-700 mt-8 pt-8 text-center text-gray-300'>
           <p>
             &copy; {new Date().getFullYear()} MVZ Zahnarzt Centrum Castrop. Alle

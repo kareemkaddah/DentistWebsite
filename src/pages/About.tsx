@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const team = [
   {
@@ -49,6 +49,25 @@ const values = [
     description:
       'Eine beruhigende, freundliche Umgebung – damit Sie sich vom ersten Moment an sicher und gut aufgehoben fühlen.',
     icon: '🏥',
+  },
+];
+
+const practiceImages = [
+  {
+    url: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    alt: 'Moderne Zahnarztpraxis',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    alt: 'Behandlungsraum',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    alt: 'Wartezimmer',
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    alt: 'Rezeption',
   },
 ];
 
@@ -109,6 +128,18 @@ const AnimatedEmoji = ({ emoji, index }: { emoji: string; index: number }) => {
 };
 
 const About = () => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % practiceImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + practiceImages.length) % practiceImages.length
+    );
+  };
+
   return (
     <div className='bg-gray-50'>
       {/* Hero Section */}
@@ -230,37 +261,74 @@ const About = () => {
               bieten. Wir halten die höchsten Standards für Sauberkeit und
               Sterilisation ein, um Ihre Sicherheit zu gewährleisten.
             </p>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
+            <div className='relative'>
               <motion.div
-                className='overflow-hidden rounded-lg shadow-lg group cursor-pointer'
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow:
-                    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-                  transition: { duration: 0.3 },
-                }}
+                key={currentImageIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.5 }}
+                className='overflow-hidden rounded-lg shadow-lg aspect-[4/3]'
               >
-                <motion.img
-                  src='https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-                  alt='Zahnarztpraxis'
-                  className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+                <img
+                  src={practiceImages[currentImageIndex].url}
+                  alt={practiceImages[currentImageIndex].alt}
+                  className='w-full h-full object-cover'
                 />
               </motion.div>
-              <motion.div
-                className='overflow-hidden rounded-lg shadow-lg group cursor-pointer'
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow:
-                    '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-                  transition: { duration: 0.3 },
-                }}
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevImage}
+                className='absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110'
               >
-                <motion.img
-                  src='https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
-                  alt='Behandlungsraum'
-                  className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
-                />
-              </motion.div>
+                <svg
+                  className='w-6 h-6'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M15 19l-7-7 7-7'
+                  />
+                </svg>
+              </button>
+              <button
+                onClick={nextImage}
+                className='absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-primary p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110'
+              >
+                <svg
+                  className='w-6 h-6'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M9 5l7 7-7 7'
+                  />
+                </svg>
+              </button>
+
+              {/* Image Indicators */}
+              <div className='absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2'>
+                {practiceImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex
+                        ? 'bg-primary w-4'
+                        : 'bg-white/50 hover:bg-white'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>

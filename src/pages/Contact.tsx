@@ -32,60 +32,28 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
               className='bg-white p-8 rounded-lg shadow-lg h-full flex flex-col'
             >
-              <h2 className='text-2xl font-bold mb-6'>
-                Senden Sie uns eine Nachricht
-              </h2>
-              <form className='space-y-6 flex-grow'>
-                <div>
-                  <label
-                    htmlFor='name'
-                    className='block text-sm font-medium text-gray-700 mb-1'
-                  >
-                    Name
-                  </label>
-                  <input
-                    type='text'
-                    id='name'
-                    className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary'
-                    required
-                  />
+              <div className='text-center mb-8'>
+                <h2 className='text-3xl font-bold text-gray-800 mb-4'>
+                  Kontaktieren Sie uns
+                </h2>
+                <div className='w-20 h-1 bg-primary mx-auto rounded-full'></div>
+              </div>
+
+              <div className='flex flex-col items-center justify-center flex-grow space-y-6'>
+                <div className='text-center max-w-md'>
+                  <p className='text-gray-600 text-lg mb-6'>
+                    Wir freuen uns auf Ihre Nachricht und stehen Ihnen für alle
+                    Fragen zur Verfügung.
+                  </p>
+                  <div className='bg-gray-50 p-6 rounded-lg border border-gray-100'>
+                    <p className='text-primary font-bold text-3xl mb-2'>
+                      info@zahnarztpraxis.de
+                    </p>
+                    <p className='text-gray-500'>
+                      Wir antworten Ihnen innerhalb von 24 Stunden
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <label
-                    htmlFor='email'
-                    className='block text-sm font-medium text-gray-700 mb-1'
-                  >
-                    E-Mail
-                  </label>
-                  <input
-                    type='email'
-                    id='email'
-                    className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary'
-                    required
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor='message'
-                    className='block text-sm font-medium text-gray-700 mb-1'
-                  >
-                    Nachricht
-                  </label>
-                  <textarea
-                    id='message'
-                    rows={6}
-                    className='w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary'
-                    required
-                  ></textarea>
-                </div>
-              </form>
-              <div className='mt-8'>
-                <button
-                  type='submit'
-                  className='w-full bg-primary text-white py-3 px-6 rounded-md hover:bg-secondary transition-colors duration-300'
-                >
-                  Nachricht senden
-                </button>
               </div>
             </motion.div>
 
